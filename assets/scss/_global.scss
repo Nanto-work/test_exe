@@ -1,0 +1,1149 @@
+body{
+  width: 100%;
+  min-height: 100Vh;
+  height: 100Vh;
+  background: $dBlack;
+  font: 16px/28px 'Raleway', sans-serif;
+  font-weight: 400;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  overflow: hidden;
+}
+*{
+  box-sizing: border-box;
+  text-align: left;
+}
+ul{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+img{
+  display: block;
+  width: 100%;
+}
+a,
+button{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  &.btn{
+    height: 48px;
+    line-height: 1;
+    padding: 0 16px;
+    border-radius: 12px;
+    white-space: nowrap;
+    &.st1{
+      background: $grayLight;
+      svg{
+        fill: $dGray;
+      }
+      span{
+        color: $dGray;
+      }
+    }
+    &.st2{
+      background: $dViolet;
+      color: $dWhite;
+    }
+    &.st3{
+      background: $violet15;
+      color: $dViolet;
+    }
+  }
+}
+.night{
+  button.btn{
+    &.st1{
+      background: $whiteLight;
+      svg{
+        fill: $white72;
+      }
+      span{
+        color: $nWhite;
+      }
+    }
+  }
+}
+input,
+textarea{
+  display: block;
+  max-width: 100%;
+  min-width: 100%;
+  height: 48px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid $grayLight;
+  border-radius: 12px;
+  background: $grayLight;
+  outline: 0;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.001em;
+  color: $dGray;
+  &::placeholder{
+    color: $dGray;
+  }
+  &.error{
+    border-color: $dOrange
+  }
+}
+textarea{
+  min-height: 96px;
+  height: auto;
+}
+.night{
+  input,
+  textarea{
+    background: $white10;
+    color: $white56;
+    &::placeholder{
+      color: $white56;
+    }
+  }
+}
+label{
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+fieldset{
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+// App
+#__nuxt,
+#__layout{
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+  .app{
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    padding: 88px 0 0;
+    background: $grayLight;
+    overflow-x: hidden;
+    @media screen and (max-width: 1024px) {
+      padding: 56px 0 0;
+    }
+    @media screen and (max-width: 768px) {
+      max-height: none;
+    }
+    @media screen and (max-width: 576px) {
+      padding: 56px 0;
+    }
+    &.night{
+      background: $dBlack;
+    }
+    .loader{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: $dWhite;
+      visibility: visible;
+      opacity: 1;
+      transition: all .15s ease;
+      z-index: 10000;
+      &.loaded{
+        opacity: 0;
+        visibility: hidden;
+      }
+      img{
+        display: block;
+        width: 100px;
+        height: 100px;
+      }
+    }
+    .loader-wrap{
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: center;
+
+      background: $dWhite;
+    }
+  }
+}
+// Loader wrap animate
+.loader{
+  &-enter{
+    opacity: 0;
+
+    &-active{
+      transition: all 0s ease;
+    }
+  }
+  &-leave{
+    &-active{
+      opacity: 0;
+      transition: all .5s ease!important;
+    }
+  }
+}
+.night{
+  .loader{
+    background: $nBlack!important;
+  }
+  .loader-wrap{
+    background: $nBlack!important;
+  }
+}
+// Dropdown
+.dropdown{
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 228px;
+  margin: 10px 0 0;
+  border-radius: 12px;
+  background: $dWhite;
+  box-shadow: 0px 40px 67px rgba(0, 0, 0, .2);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .15s ease;
+  z-index: -100;
+  @media screen and (max-width: 576px) {
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%!important;
+    margin: 0;
+    border-radius: 0;
+    overflow: scroll;
+  }
+  &.open{
+    visibility: visible;
+    opacity: 1;
+    z-index: 100;
+  }
+  .subtitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    span{
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 24px;
+      color: $dBlack;
+      letter-spacing: 0.0015em;
+    }
+    svg{
+      display: block;
+      width: 20px;
+      height: 12px;
+      fill: $dGray;
+    }
+  }
+  ul.notify{
+    padding: 0 0 8px;
+    li{
+      position: relative;
+      &:after{
+        position: absolute;
+        bottom: 0;
+        left: 70px;
+        right: 0;
+        display: block;
+        height: 1px;
+        background: $grayMedium;
+        content: "";
+      }
+      a,
+      button{
+        justify-content: flex-start;
+        width: 100%;
+        margin: 0 0 18px;
+        padding: 8px 14px;
+        margin: 0;
+        border-left: 2px solid transparent;
+        background: $dWhite;
+        text-transform: none;
+        &.active{
+          border-color: $dOrange;
+          background: $grayLight;
+        }
+        .img{
+          max-width: 40px;
+          min-width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          overflow: hidden;
+          img{
+            height: 100%;
+          }
+        }
+        .info{
+          flex: 1 1 auto;
+          padding: 0 0 0 16px;
+          span{
+            position: relative;
+            top: 0;
+            right: 0;
+            display: block;
+            height: auto;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: $dBlack;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+  .notifyempty{
+    padding: 16px 0 32px;
+    .img{
+      position: relative;
+      width: 200px;
+      height: 188px;
+      margin: 32px auto 0;
+      img{
+        height: 100%;
+      }
+    }
+    .text{
+      padding: 28px 0 0;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 24px;
+      color: $dGray;
+      letter-spacing: 0.0015em;
+      text-align: center;
+    }
+  }
+  ul.menu{
+    padding: 16px 0;
+    li{
+      a,
+      button{
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        height: auto;
+        padding: 10px 18px;
+        text-decoration: none;
+        .ico{
+          display: flex;
+          justify-content: center;
+          max-width: 20px;
+          min-width: 20px;
+          margin: 0 18px 0 0;
+          svg{
+            width: 20px;
+            height: 20px;
+            fill: $dGray;
+          }
+        }
+        span{
+          display: block;
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 16px;
+          letter-spacing: 0.001em;
+          color: $dGray;
+          text-transform: none!important;
+        }
+      }
+    }
+  }
+}
+.night{
+  .dropdown{
+    background: $blackLight;
+    .subtitle{
+      span{
+        color: $nWhite;
+      }
+      svg{
+        fill: $white56;
+      }
+    }
+    ul.notify{
+      li{
+        &:after{
+          background: $white20;
+        }
+        a,
+        button{
+          background: $blackLight;
+          &.active{
+            border-color: $nOrange;
+            background: $white05;
+          }
+          .info{
+            span{
+              color: $white72;
+            }
+          }
+        }
+      }
+    }
+    ul.menu{
+      li{
+        a,
+        button{
+          .ico{
+            svg{
+              fill: $white72;
+            }
+          }
+          span{
+            color: $nWhite;
+          }
+        }
+      }
+    }
+    .notifyempty{
+      .text{
+        color: $white72;
+      }
+    }
+  }
+}
+// Badge
+span.badge{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px 8px 0;
+  border-radius: 4px;
+  background: $dOrange;
+  color: $dWhite;
+}
+// Main page scroll
+.ps{
+  position: relative;
+  width: 100%;
+  /* overflow: hidden; */
+  overflow-anchor: none;
+  -ms-overflow-style: none;
+  touch-action: auto;
+  -ms-touch-action: auto;
+  @media screen and (max-width: 768px) {
+    overflow: auto;
+  }
+  &.appscroll{
+    position: relative;
+    width: calc(100% - 96px);
+    height: 100%;
+    margin: 0 0 0 96px;
+    border-radius: 0 0 0 24px;
+    background: $dWhite;
+    @media screen and (max-width: 1024px) {
+      width: calc(100% - 80px);
+      margin: 0 0 0 80px;
+    }
+    @media screen and (max-width: 768px) {
+      height: auto;
+    }
+    @media screen and (max-width: 576px) {
+      width: 100%;
+      margin: 0;
+      border-radius: 0 0 16px 16px;
+    }
+    &.clear{
+      width: 100%;
+      margin: 0;
+      border-radius: 0;
+    }
+  }
+  .ps__rail{
+    &-y{
+      position: absolute;
+      left: auto!important;
+      right: 10px;
+      display: none;
+      width: 12px;
+      border-radius: 6px;
+      background: $black32;
+      transition: opacity .15s ease;
+      opacity: 0;
+      z-index: 100;
+      @media screen and (max-width: 920px) {
+        width: 6px;
+        border-radius: 3px;
+      }
+      .ps__thumb-y{
+        position: absolute;
+        width: 100%;
+        border-radius: 6px;
+        background: $dBlack;
+        @media screen and (max-width: 1024px) {
+          border-radius: 3px;
+        }
+      }
+    }
+    &-x{
+      display: none;
+    }
+  }
+  &.ps--scrolling-y{
+    .ps__rail-y{
+      opacity: 1;
+    }
+  }
+  &--active-y{
+    .ps__rail-y{
+      display: block;
+    }
+  }
+}
+.gamepage{
+  @media screen and (max-width: 920px) {
+    .ps.appscroll{
+      z-index: 1100;
+    }
+    .ps__rail-y,
+    .ps__rail-x{
+      display: none;
+    }
+  }
+}
+.night{
+  .ps{
+    &.appscroll{
+      background: $nBlack;
+    }
+    .ps__rail{
+      &-y{
+        background: $white20;
+        .ps__thumb-y{
+          background: $white56;
+        }
+      }
+    }
+  }
+}
+// Main content
+main.content{
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  padding: 0 0 64px;
+  z-index: 100;
+  @media screen and (max-width: 1024px) {
+    padding: 0;
+  }
+}
+// Pagetitle
+.pagetitle{
+  padding: 40px 48px 60px;
+  margin: 0;
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 68px;
+  letter-spacing: -0.01em;
+  @media screen and (max-width: 1024px) {
+    padding: 24px 24px 40px;
+    font-size: 56px;
+    line-height: 64px;
+  }
+  @media screen and (max-width: 920px) {
+    padding: 24px;
+    font-size: 48px;
+    line-height: 56px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 24px 24px 30px;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 48px;
+  }
+  @media screen and (max-width: 576px) {
+    padding: 16px 16px 24px;
+    font-size: 36px;
+    line-height: 42px;
+  }
+  @media screen and (max-width: 480px) {
+    padding: 16px 16px 24px;
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+.night{
+  color: $nWhite;
+}
+// Boxtitle
+.boxtitle{
+  display: flex;
+  align-items: center;
+  padding: 0 0 24px;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 48px;
+  @media screen and (max-width: 920px) {
+    padding: 0 0 16px;
+    font-size: 32px;
+    line-height: 40px;
+  }
+  @media screen and (max-width: 576px) {
+    justify-content: space-between;
+    padding: 0 0 16px;
+    font-size: 24px;
+    line-height: 28px;
+  }
+  span{
+    display: block;
+    padding: 0 24px 0 0;
+    i{
+      font-style: normal;
+      @media screen and (max-width: 576px) {
+        display: none;
+      }
+    }
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 32px;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: $dViolet;
+    @media screen and (max-width: 576px) {
+      max-width: 24px;
+      min-width: 24px;
+      height: 24px;
+    }
+    svg {
+      display: block;
+      width: 7px;
+      height: 12px;
+      margin: 0 0 0 2px;
+      fill: $dWhite;
+    }
+  }
+}
+.night{
+  .boxtitle{
+    span{
+      color: $nWhite;
+    }
+  }
+}
+// Svg ico
+svg.icon{
+  display: block;
+}
+// User photo
+.userphoto{
+  max-width: 56px;
+  min-width: 56px;
+  height: 56px!important;
+  margin: 0 24px 0 0;
+  border-radius: 50%;
+  overflow: hidden;
+  @media screen and (max-width: 576px) {
+    max-width: 40px;
+    min-width: 40px;
+    height: 40px!important;
+    margin: 0 16px 0 0;
+  }
+  img{
+    height: 100%;
+  }
+}
+// Swiper navigation
+.swipernav{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0;
+  z-index: 200;
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+  button{
+    position: absolute;
+    top: 0;
+    width: 64px;
+    height: 88px;
+    margin: -74px 0 0;
+    border-radius: 12px;
+    background: $black90;
+    transition: all .15s ease;
+    &.swiper-button-disabled{
+      display: none;
+    }
+    svg{
+      display: block;
+      width: 14px;
+      height: 24px;
+      fill: $dWhite;
+    }
+  }
+}
+// Filters
+.filters{
+  max-width: 100%;
+  overflow: hidden;
+  @media screen and (max-width: 576px) {
+    max-width: calc(100% + 32px);
+    min-width: calc(100% + 32px);
+    margin: 0 0 0 -16px;
+    padding: 0 0 0 16px;
+  }
+  ul{
+    display: flex;
+    align-items: center;
+    padding: 0 0 24px;
+    margin: 0;
+    list-style: none;
+    @media screen and (max-width: 576px) {
+      padding: 0 0 16px;
+    }
+    li{
+      padding: 0 8px 0 0;
+      &:last-child{
+        padding: 0;
+      }
+      button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+        padding: 0 16px;
+        margin: 0;
+        border: 0;
+        border-radius: 12px;
+        background: $grayLight;
+        transition: background .15s ease;
+        white-space: nowrap;
+        @media screen and (max-width: 576px) {
+          height: 32px;
+          padding: 0 12px;
+          border-radius: 8px;
+        }
+        span{
+          display: block;
+          font-size: 14px;
+          font-weight: 800;
+          line-height: 16px;
+          color: $dGray;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          &.badge{
+            position: relative;
+            height: 20px;
+            margin: 0 0 0 10px;
+            padding: 0 8px 2px;
+            font-size: 12px;
+            line-height: 20px;
+            color: $dWhite;
+            letter-spacing: 0.01em;
+          }
+          @media screen and (max-width: 576px) {
+            font-size: 12px;
+            line-height: 16px;
+          }
+        }
+        &.active{
+          background: $dOrange;
+          span{
+            color: $dWhite;
+            &.badge{
+              background: $grayLight;
+              color: $dGray;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.night{
+  .filters{
+    ul{
+      li{
+        button{
+          background: $white05;
+          span{
+            color: $white56;
+            &.badge{
+              color: $dWhite;
+            }
+          }
+          &.active{
+            background: $dOrange;
+            span{
+              color: $dWhite;
+              &.badge{
+                color: $dWhite;
+                background: $blackLight;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// Page route animate
+.page{
+  &-enter{
+    opacity: 0;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    &-active{
+      transition: all .5s ease;
+    }
+  }
+  &-leave{
+    &-active{
+      opacity: 0;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      transition: all 0s ease!important;
+    }
+  }
+}
+// Search
+.searchform{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 48px 0;
+  @media screen and (max-width: 1024px) {
+    padding: 32px 24px 0;
+  }
+  @media screen and (max-width: 768px) {
+    display: block;
+    padding: 24px 24px 0;
+  }
+  fieldset{
+    position: relative;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    .icon{
+      position: absolute;
+      top: 50%;
+      left: 18px;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0;
+      fill: $dGray;
+    }
+    input{
+      padding: 0 20px 0 60px;
+      border: 0;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.001em;
+    }
+  }
+  .btns{
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 16px;
+    @media screen and (max-width: 768px) {
+      padding: 24px 0 0;
+    }
+    button{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 48px;
+      padding: 0 16px;
+      margin: 0 0 0 8px;
+      border: 0;
+      border-radius: 12px;
+      background: $grayLight;
+      transition: background 0.15s ease;
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 16px;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      color: $dGray;
+      @media screen and (max-width: 768px) {
+        margin: 0 8px 0 0;
+      }
+      &.active{
+        background: $dOrange;
+        color: $dWhite;
+      }
+    }
+  }
+}
+// Modals
+.modalbox{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  visibility: hidden;
+  opacity: 0;
+  z-index: 5000;
+  transition: all .5s ease;
+  &.open{
+    visibility: visible;
+    opacity: 1;
+  }
+  @media screen and (max-width: 576px) {
+    transition: none;
+    &[data-modal="messages"],
+    /* &[data-modal="messagesChat"], */
+    &[data-modal="friends"],
+    &[data-modal="news"] {
+      top: 56px!important;
+      bottom: 56px;
+      height: auto;
+      background: $grayLight;
+    }
+    &[data-modal="messagesChat"] {
+      bottom: 0;
+    }
+    &[data-modal="userProfile"],
+    &[data-modal="personalData"]{
+      top: 0!important;
+      bottom: 0;
+      height: 100Vh;
+      background: $grayLight;
+      z-index: 4000;
+    }
+    &[data-modal="gameInfo"]{
+      flex-flow: column nowrap;
+      justify-content: flex-end;
+      align-items: stretch;
+    }
+  }
+  .modalinfo{
+    position: relative;
+    top: -100px;
+    max-height: 100Vh;
+    border-radius: 24px;
+    background: $dWhite;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .15s ease;
+    overflow: hidden;
+    @media screen and (max-width: 576px) {
+      top: 0;
+      transition: none;
+      height: 100% !important;
+    }
+    &.bigger{
+      width: 1112px;
+      max-width: calc(100% - 48px);
+      height: 628px;
+      @media screen and (max-width: 576px) {
+        padding: 16px;
+      }
+    }
+    &.big{
+      width: 1048px;
+      max-width: calc(100% - 48px);
+      height: 628px;
+      @media screen and (max-width: 576px) {
+        padding: 16px!important;
+      }
+    }
+    &.middle{
+      width: 700px;
+      max-width: calc(100% - 48px);
+      height: 628px;
+      @media screen and (max-width: 576px) {
+        padding: 16px!important;
+        height: 100%;
+      }
+    }
+    &.small{
+      width: 560px;
+      @media screen and (max-width: 576px) {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        padding: 24px!important;
+        overflow: scroll;
+      }
+      @media screen and (max-width: 480px) {
+        padding: 16px!important;
+      }
+    }
+    .modalcontent{
+      height: 100%;
+    }
+    button.close{
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: $grayLight;
+      z-index: 1;
+      svg{
+        width: 9px;
+        height: 9px;
+        fill: $dGray;
+      }
+    }
+  }
+  &.active .modalinfo{
+    top: 0;
+    visibility: visible;
+    opacity: 1;
+  }
+}
+.night{
+  .modalbox{
+    @media screen and (max-width: 576px) {
+      &[data-modal="messages"],
+      &[data-modal="messagesChat"],
+      &[data-modal="friends"],
+      &[data-modal="news"] {
+        background: $dBlack;
+      }
+    }
+    .modalinfo{
+      background: $nBlack!important;
+      button.close{
+        background: $white10!important;
+        svg{
+          fill: $white72!important;
+        }
+      }
+    }
+  }
+}
+// User modal top
+.usermodaltop{
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 0 16px;
+  &:before{
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    background: $grayMedium;
+    content: "";
+  }
+  button{
+    width: 20px;
+    height: 16px;
+    margin: 0 28px 0 40px;
+    @media screen and (max-width: 920px) {
+      margin: 0 28px 0 24px;
+    }
+    @media screen and (max-width: 576px) {
+      margin: 0 16px 0 0;
+    }
+    svg{
+      width: 100%;
+      height: 100%;
+      fill: $dViolet;
+    }
+  }
+  .userphoto{
+    margin: 0 16px 0 0;
+  }
+  .info{
+    .name{
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0.0015em;
+      @media screen and (max-width: 576px) {
+        font-size: 12px;
+        line-height: 16px;
+      }
+    }
+    .online{
+      display: flex;
+      align-items: center;
+      padding: 4px 0 0;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.004em;
+      color: $dGray;
+      @media screen and (max-width: 576px) {
+        font-size: 10px;
+        line-height: 12px;
+      }
+      span{
+        display: block;
+        max-width: 8px;
+        min-width: 8px;
+        height: 8px;
+        margin: 0 6px 0 0;
+        border-radius: 50%;
+        background: $grayMedium;
+      }
+      &.active span{
+        background: $dGreen;
+      }
+    }
+  }
+}
+.night{
+  .usermodaltop{
+    &:before{
+      background: $white20;
+    }
+    button{
+      svg{
+        fill: $nViolet;
+      }
+    }
+    .info{
+      .online{
+        color: $white56;
+        span{
+          background: $white20;
+        }
+        &.active span{
+          background: $nGreen;
+        }
+      }
+    }
+  }
+}
