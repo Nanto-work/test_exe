@@ -88,9 +88,5 @@ export default {
     cssSourceMap: true,
     extractCSS: true
   },
-  telemetry: false,
-  server: {
-    port: 8000, // default: 3000
-    host: '195.133.144.154' // default: localhost
-  }
+  telemetry: false
 }
