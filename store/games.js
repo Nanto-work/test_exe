@@ -57,7 +57,7 @@ export const actions = {
         data[e][0].offset = data.games_all.length
       }
       commit('setState', {
-        key: key[e], 
+        key: key[e],
         value: data[e]
       })
     })
@@ -73,6 +73,13 @@ export const actions = {
       current: 0,
       list: filters
     })
+  },
+  async setAllGames() {
+    const { data } = await this.$axios.post('/appApi/games', {
+      type: 0,
+      offset: 0
+    })
+    console.log(data)
   },
   async setCategories({state, commit}, params) {
     let categories = Object.assign({}, state.categories)

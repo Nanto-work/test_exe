@@ -16,6 +16,7 @@ export const actions = {
   // Inititial app data
   async initAppData() {
     const { response } = await this.$axios.$post('/appApi/init', {})
+
     let games = {},
         search = []
     response.map(e => {
@@ -100,7 +101,7 @@ export const actions = {
   // Theme
   setTheme({commit}, params) {
     commit('setState', {
-      key: 'theme', 
+      key: 'theme',
       value: Number(params.theme)
     })
     if(params.update) {

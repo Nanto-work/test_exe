@@ -23,6 +23,7 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
+      { rel: 'icon', type: 'image/png', href: '/icon.png' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
@@ -88,5 +89,8 @@ export default {
     cssSourceMap: true,
     extractCSS: true
   },
-  telemetry: false
+  telemetry: false/*,
+  server: {
+    host: '192.168.0.10'
+  }*/
 }
